@@ -359,6 +359,12 @@ footer {
   max-height: 100%;
 }
 /*@media query*/
+@media only screen and (min-width: 790px) {
+  .hamburger-menu{
+    display: none;
+  }
+
+}
 @media only screen and (max-width: 780px) {
   #pic {
     width: 80px;
