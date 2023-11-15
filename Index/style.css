@@ -58,6 +58,7 @@ a {
   align-items: center;
   flex-direction: column;
   margin: 30px;
+  padding: 30px;
   box-shadow: 10px 10px 10px lightblue;
   border-radius: 20px;
   background: linear-gradient(100deg, transparent, lightsteelblue);
@@ -204,10 +205,12 @@ a {
   align-items: center;
 }
 header {
+ 
   display: flex;
-  justify-content: flex-end;
+  gap: 20%;
+  /*justify-content: flex-end;
   align-items: center;
-  text-decoration: none;
+  text-decoration: none;*/
 }
 #pic1 {
   margin: 10px;
