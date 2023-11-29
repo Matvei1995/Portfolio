@@ -169,10 +169,10 @@ a {
   color: transparent; /* Couleur de remplissage du texte */
   letter-spacing: 2px;
   backdrop-filter: none;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-repeat:no-repeat;
+  background-size:cover; 
   background-position: top;
-  -webkit-text-stroke: 1px #b38b59; /* Contour rouge autour du texte */
+  -webkit-text-stroke: 1px #a87e4a; /* Contour rouge autour du texte */
   
 }
 
@@ -358,10 +358,19 @@ footer {
   max-height: 100%;
 }
 /*@media query*/
+
+@media only screen and (max-width: 1200px) {
+
+.content-skills{
+  flex-direction: column;
+  gap: 10px;
+}
+}
 @media only screen and (min-width: 781px) {
   .hamburger-menu{
     display: none;
   }
+
   .menu-nav{
     display: flex;
     justify-content: flex-start;
@@ -374,6 +383,14 @@ footer {
 
 }
 @media only screen and (max-width: 780px) {
+
+  #home-body {
+    background: url(../picture/Moon.svg);
+   
+    background-repeat:no-repeat;
+    background-size:800px 800px; 
+    background-position: center;
+  }
   .menu-nav{
     display: none;
   }
