@@ -336,7 +336,7 @@ header {
 
 
 .content-cards-k{
- 
+ width: 700px;
   max-height: 190px;
    box-shadow: 10px 10px 10px lightblue;
    border-radius: 20px;
@@ -382,6 +382,17 @@ footer {
   
 
 }
+@media screen and (min-width:1201px ) and (max-width:1400px){
+  .pic-figma,
+.pic-vscode,
+.pic-mysql,
+.pic-node4,
+.pic-css,
+.pic-js,
+.pic-html {
+  height: 80px;
+}
+}
 @media only screen and (max-width: 780px) {
 
   #home-body {
@@ -398,10 +409,13 @@ footer {
     width: 80px;
   }
   h1{
-    font-size: 20px;
+    font-size: 15px;
   }
   p{
     font-size: 12px;
+  }
+  h2{
+    font-size: 15px;
   }
   .me{
     font-size: 16px;
