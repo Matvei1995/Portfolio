@@ -343,11 +343,15 @@ header {
    background: linear-gradient(100deg, transparent, lightsteelblue);
 }
 
+.content-cards-k:hover{
+  opacity: 0.4;
+}
+
 footer {
   background-color: antiquewhite;
   display: flex;
-  justify-content: center;
-  text-align: center;
+  justify-content:space-around;
+  align-items: center;
   padding: 20px 0;
   gap: 35px;
 }
