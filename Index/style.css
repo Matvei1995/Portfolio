@@ -205,12 +205,8 @@ a {
   align-items: center;
 }
 header {
- 
   display: flex;
-  gap: 20%;
-  /*justify-content: flex-end;
-  align-items: center;
-  text-decoration: none;*/
+  gap: 50%;
 }
 #pic1 {
   margin: 10px;
@@ -344,7 +340,8 @@ header {
 }
 
 .content-cards-k:hover{
-  opacity: 0.4;
+  opacity: 0.8;
+  transform: scale(1.2);
 }
 
 footer {
@@ -399,13 +396,13 @@ footer {
 }
 @media only screen and (max-width: 780px) {
 
-  #home-body {
+  /* #home-body {
     background: url(../picture/Moon.svg);
-   
+    background-size: cover;
     background-repeat:no-repeat;
     background-size:800px 800px; 
     background-position: center;
-  }
+  } */
   .menu-nav{
     display: none;
   }
