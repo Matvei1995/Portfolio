@@ -207,10 +207,8 @@ a {
 header {
  
   display: flex;
-  gap: 20%;
-  /*justify-content: flex-end;
-  align-items: center;
-  text-decoration: none;*/
+  justify-content: space-between;
+ 
 }
 #pic1 {
   margin: 10px;
@@ -221,11 +219,11 @@ header {
 .me {
   font-size: 28px;
 }
-.myself {
+/* .myself {
   display: flex;
   justify-content: center;
   gap: 20px;
-}
+} */
 
 .about-me {
   
@@ -337,7 +335,7 @@ header {
 
 .content-cards-k{
  width: 700px;
-  max-height: 190px;
+ 
    box-shadow: 10px 10px 10px lightblue;
    border-radius: 20px;
    background: linear-gradient(100deg, transparent, lightsteelblue);
@@ -444,3 +442,17 @@ footer {
   }
 
   }
+
+/*****************PAGE UN PEU PLUS*************************/
+.content-title-hobies{
+  display: flex;
+  padding: 10vh;
+  justify-content: center;
+
+}
+.logo-club{
+  width: 10vw;
+  height: 15vh;
+
+}
+
