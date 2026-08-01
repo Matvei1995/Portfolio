@@ -82,6 +82,8 @@
       line-height: 1.5;
       min-height: 320px;
       white-space: pre-wrap;
+      overflow-y: auto;
+      max-height: 600px;
     }
 
     /* Couleurs spécifiques aux OS */
@@ -99,6 +101,7 @@
       margin-right: 8px;
       font-weight: bold;
       user-select: none;
+      white-space: nowrap;
     }
 
     .cmd-input {
@@ -123,9 +126,27 @@
       font-size: 12px;
       font-weight: bold;
       transition: background 0.2s;
+      border: none;
+      cursor: pointer;
     }
     .terminal-btn:hover {
       background: #2563eb;
+    }
+
+    /* Style des lignes de sortie */
+    .output-line {
+      margin-top: 10px;
+      word-wrap: break-word;
+    }
+
+    .command-line {
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .response-line {
+      color: #cccccc;
+      white-space: pre-wrap;
     }
   </style>
 </head>
@@ -162,6 +183,15 @@
 </div>
 
 <script>
+  // ============================================
+  // FONCTION DE SÉCURITÉ : Échapper le HTML
+  // ============================================
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
   // Configurations des 3 systèmes
   const osData = {
     linux: {
@@ -209,9 +239,39 @@ Copyright (C) Microsoft Corporation. All rights reserved.
   let currentOSIndex = 0;
   let autoRotateInterval;
 
+  // ============================================
+  // Définition des commandes et réponses sûres
+  // ============================================
+  const commands = {
+    help: {
+      response: "Commandes disponibles:\n - projects : voir mes projets\n - contact  : mes liens sociaux\n - clear    : effacer l'écran\n - switch   : changer d'OS",
+      hasButton: true
+    },
+    projects: {
+      response: "📁 Projets principaux:\n1. E-commerce Platform (Next.js / Node)\n2. Mobile App (React Native)\n3. Custom API Engine (PHP)",
+      hasButton: false
+    },
+    contact: {
+      response: "📬 Contact:\n - GitHub: github.com/matvei1995\n - LinkedIn: linkedin.com/in/matvei\n - Email: contact@matvei.dev",
+      hasButton: false
+    },
+    clear: {
+      isClear: true
+    },
+    switch: {
+      isSwitch: true
+    }
+  };
+
+  // ============================================
+  // Gestion de l'affichage du système d'exploitation
+  // ============================================
   function setOS(osKey) {
     const data = osData[osKey];
-    document.getElementById("banner-content").textContent = data.banner;
+    
+    // Utiliser textContent pour éviter les injections XSS
+    const bannerElem = document.getElementById("banner-content");
+    bannerElem.textContent = data.banner;
     
     const promptElem = document.getElementById("prompt-symbol");
     promptElem.textContent = data.prompt;
@@ -241,7 +301,9 @@ Copyright (C) Microsoft Corporation. All rights reserved.
     startAutoRotate();
   }
 
+  // ============================================
   // Gestion des commandes interactives
+  // ============================================
   const inputElem = document.getElementById("cli-input");
   const outputElem = document.getElementById("output");
 
@@ -250,47 +312,82 @@ Copyright (C) Microsoft Corporation. All rights reserved.
       const command = this.value.trim().toLowerCase();
       const currentPrompt = osData[osKeys[currentOSIndex]].prompt;
       
-      let response = "";
-
-      if (command === "help") {
-        // Intégration d'un bouton HTML cliquable menant vers home.html
-        response = `Commandes disponibles:
- - projects : voir mes projets <a href="./index/home.html" class="terminal-btn">Ouvrir mes projets</a>
- - contact  : mes liens sociaux
- - clear    : effacer l'écran
- - switch   : changer d'OS`;
-      } else if (command === "projects") {
-        response = "📁 Projets principaux:\n1. E-commerce Platform (Next.js / Node)\n2. Mobile App (React Native)\n3. Custom API Engine (PHP)";
-      } else if (command === "contact") {
-        response = "📬 Contact:\n - GitHub: github.com/matvei1995\n - LinkedIn: linkedin.com/in/matvei\n - Email: contact@matvei.dev";
-      } else if (command === "clear") {
-        outputElem.innerText = "";
-        this.value = "";
+      // Ne rien faire si la commande est vide
+      if (command === "") {
         return;
-      } else if (command === "switch") {
-        currentOSIndex = (currentOSIndex + 1) % osKeys.length;
-        setOS(osKeys[currentOSIndex]);
-        this.value = "";
-        return;
-      } else if (command !== "") {
-        response = `Commande inconnue: '${command}'. Tapez 'help' pour la liste.`;
       }
 
-      if (command !== "") {
-        const logLine = document.createElement("div");
-        logLine.style.marginTop = "10px";
-        
-        // MODIFICATION CLÉ : utilisation de innerHTML au lieu de textContent
-        // pour que les balises HTML (<a ...></a>) soient interprétées comme des éléments cliquables
-        logLine.innerHTML = `${currentPrompt} ${command}<br>${response.replace(/\n/g, '<br>')}`;
-        outputElem.appendChild(logLine);
+      // Créer la ligne de résultat
+      const logLine = document.createElement("div");
+      logLine.className = "output-line";
+
+      // Ligne de la commande (sécurisée)
+      const commandLine = document.createElement("div");
+      commandLine.className = "command-line";
+      commandLine.textContent = currentPrompt + " " + command;
+      logLine.appendChild(commandLine);
+
+      // Traiter la commande
+      if (commands[command]) {
+        const cmdData = commands[command];
+
+        if (cmdData.isClear) {
+          // Commande clear
+          outputElem.innerText = "";
+          this.value = "";
+          resetAutoRotate();
+          return;
+        } else if (cmdData.isSwitch) {
+          // Commande switch
+          currentOSIndex = (currentOSIndex + 1) % osKeys.length;
+          setOS(osKeys[currentOSIndex]);
+          this.value = "";
+          resetAutoRotate();
+          return;
+        } else {
+          // Commande normale avec réponse
+          const responseLine = document.createElement("div");
+          responseLine.className = "response-line";
+          responseLine.textContent = cmdData.response;
+          logLine.appendChild(responseLine);
+
+          // Ajouter le bouton si nécessaire
+          if (cmdData.hasButton) {
+            const btnContainer = document.createElement("div");
+            btnContainer.style.marginTop = "5px";
+            
+            const btn = document.createElement("button");
+            btn.className = "terminal-btn";
+            btn.textContent = "Ouvrir mes projets";
+            btn.onclick = function() {
+              window.location.href = "./Index/home.html";
+            };
+            btnContainer.appendChild(btn);
+            logLine.appendChild(btnContainer);
+          }
+        }
+      } else {
+        // Commande inconnue
+        const responseLine = document.createElement("div");
+        responseLine.className = "response-line";
+        responseLine.textContent = `Commande inconnue: '${escapeHtml(command)}'. Tapez 'help' pour la liste.`;
+        logLine.appendChild(responseLine);
       }
 
+      // Ajouter la ligne au output
+      outputElem.appendChild(logLine);
+      
+      // Vider l'input
       this.value = "";
+      
+      // Scroll vers le bas
+      outputElem.parentElement.scrollTop = outputElem.parentElement.scrollHeight;
+      
       resetAutoRotate();
     }
   });
 
+  // Initialisation
   setOS("linux");
   startAutoRotate();
 </script>
