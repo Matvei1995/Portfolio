@@ -1,94 +1,299 @@
 <!DOCTYPE html>
-<html lang="FR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./Index/style.css" />
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Terminal Portfolio</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #0f172a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: 'Fira Code', 'Courier New', Courier, monospace;
+      padding: 20px;
+    }
 
-    <title>Bienvenue</title>
-  </head>
-  <body class="index" class="background">
-    <div id="lang">
-      <a href="./Index/indexEn.html">English</a>
+    /* Fenêtre du Terminal */
+    .terminal-window {
+      width: 100%;
+      max-width: 750px;
+      background: #1e1e1e;
+      border-radius: 10px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      overflow: hidden;
+      border: 1px solid #333;
+    }
 
-      <img id="pic1" src="./picture/language-svgrepo-com.svg" />
+    /* Barre supérieure / Onglets */
+    .terminal-header {
+      background: #252526;
+      padding: 10px 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #333;
+    }
+
+    .window-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .dot-red { background: #ff5f56; }
+    .dot-yellow { background: #ffbd2e; }
+    .dot-green { background: #27c93f; }
+
+    .os-tabs {
+      display: flex;
+      gap: 5px;
+    }
+
+    .os-tab {
+      background: #1e1e1e;
+      color: #888;
+      border: none;
+      padding: 4px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .os-tab.active {
+      background: #3c3c3c;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    /* Corps du terminal */
+    .terminal-body {
+      padding: 20px;
+      color: #cccccc;
+      font-size: 14px;
+      line-height: 1.5;
+      min-height: 320px;
+      white-space: pre-wrap;
+    }
+
+    /* Couleurs spécifiques aux OS */
+    .theme-linux { color: #50fa7b; }
+    .theme-windows { color: #60a5fa; }
+    .theme-mac { color: #ff79c6; }
+
+    /* Ligne de commande */
+    .input-line {
+      display: flex;
+      margin-top: 15px;
+    }
+
+    .prompt {
+      margin-right: 8px;
+      font-weight: bold;
+      user-select: none;
+    }
+
+    .cmd-input {
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+      flex: 1;
+    }
+
+    /* Style du bouton interactif intégré dans le terminal */
+    .terminal-btn {
+      display: inline-block;
+      margin-top: 5px;
+      padding: 4px 10px;
+      background: #3b82f6;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+    .terminal-btn:hover {
+      background: #2563eb;
+    }
+  </style>
+</head>
+<body>
+
+<div class="terminal-window">
+  <!-- Barre d'en-tête -->
+  <div class="terminal-header">
+    <div class="window-buttons">
+      <span class="dot dot-red"></span>
+      <span class="dot dot-yellow"></span>
+      <span class="dot dot-green"></span>
     </div>
-
-    <div id="bienvenue-container">
-      <div class="bienvenue-blur">
-        <h1 class="Welcome">
-          Bienvenue sur mon portfolio
-          <span
-            class="txt-rotate"
-            data-period="2000"
-            data-rotate='[ ".","dynamique", "efficace.", "simple.", "nerdy.." ]'
-          ></span>
-        </h1>
-        <h2 class="Welcome">user@MacBook or Windows ~ %</h2>
-        <a class="css-button-rounded--gold" href="./Index/home.html">Cliquez-moi</a>
-      </div>
+    <div class="os-tabs">
+      <button class="os-tab active" onclick="switchOS('linux')">Linux</button>
+      <button class="os-tab" onclick="switchOS('windows')">Windows</button>
+      <button class="os-tab" onclick="switchOS('mac')">macOS</button>
     </div>
-    <script type="text/javascript">
-      var TxtRotate = function (el, toRotate, period) {
-        this.toRotate = toRotate;
-        this.el = el;
-        this.loopNum = 0;
-        this.period = parseInt(period, 10) || 2000;
-        this.txt = '';
-        this.tick();
-        this.isDeleting = false;
-      };
+  </div>
 
-      TxtRotate.prototype.tick = function () {
-        var i = this.loopNum % this.toRotate.length;
-        var fullTxt = this.toRotate[i];
+  <!-- Contenu du terminal -->
+  <div class="terminal-body">
+    <div id="banner-content"></div>
+    
+    <!-- Zone de résultat des commandes -->
+    <div id="output"></div>
 
-        if (this.isDeleting) {
-          this.txt = fullTxt.substring(0, this.txt.length - 1);
-        } else {
-          this.txt = fullTxt.substring(0, this.txt.length + 1);
-        }
+    <!-- Invite de commande active -->
+    <div class="input-line">
+      <span id="prompt-symbol" class="prompt"></span>
+      <input type="text" id="cli-input" class="cmd-input" placeholder="Tapez 'help' ou une commande..." autofocus>
+    </div>
+  </div>
+</div>
 
-        this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
+<script>
+  // Configurations des 3 systèmes
+  const osData = {
+    linux: {
+      prompt: "[matvei@arch-dev ~]$",
+      themeClass: "theme-linux",
+      banner: `       /\\         matvei@dev-node
+      /  \\        -----------------
+     /\\   \\       OS: Arch Linux x86_64
+    /      \\      Stack: React, Next.js, PHP
+   /   ,,   \\     Uptime: 42 days 🚀
+  /   |  |   \\    
+ /_-''    ''-_\\   Bienvenue sur mon portfolio CLI Linux !`
+    },
+    windows: {
+      prompt: "PS C:\\Users\\Matvei\\Portfolio>",
+      themeClass: "theme-windows",
+      banner: `Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
 
-        var that = this;
-        var delta = 300 - Math.random() * 100;
 
-        if (this.isDeleting) {
-          delta /= 2;
-        }
+             ,.=:!!t3Z3z=i.             matvei@WINDOWS-DEV
+            :t13333333333333Y#i          ------------------
+           :t333333333333333333i         OS: Windows 11 Pro x64
+          .333333333333333333333         Role: Fullstack Developer
+          i333333333333333333333         Location: France 🇫🇷
+          \`333333333333333333333         
+           :t33333333333333333i          Ready for new projects.`
+    },
+    mac: {
+      prompt: "➜  portfolio git:(main) ✗",
+      themeClass: "theme-mac",
+      banner: `Last login: Thu Jul 23 11:26:41 on ttys001
 
-        if (!this.isDeleting && this.txt === fullTxt) {
-          delta = this.period;
-          this.isDeleting = true;
-        } else if (this.isDeleting && this.txt === '') {
-          this.isDeleting = false;
-          this.loopNum++;
-          delta = 500;
-        }
+                    c,          matvei@macbook-pro ~
+                 .-'  \`-.       --------------------
+               .'        \`.     OS: macOS Tahoes 26.5.2
+              /            \\    Host: MacBook Pro
+             |              |   Role: Mobile & Web Developer
+              \\            /    Status: Available for hire ✨
+               \`.        .'`
+    }
+  };
 
-        setTimeout(function () {
-          that.tick();
-        }, delta);
-      };
+  const osKeys = ["linux", "windows", "mac"];
+  let currentOSIndex = 0;
+  let autoRotateInterval;
 
-      window.onload = function () {
-        var elements = document.getElementsByClassName('txt-rotate');
-        for (var i = 0; i < elements.length; i++) {
-          var toRotate = elements[i].getAttribute('data-rotate');
-          var period = elements[i].getAttribute('data-period');
-          if (toRotate) {
-            new TxtRotate(elements[i], JSON.parse(toRotate), period);
-          }
-        }
-        // INJECT CSS
-        /*var css = document.createElement('style');
-        css.type = 'text/css';
-        css.innerHTML =
-          '.txt-rotate > .wrap { border-right: 0.08em solid #666 }';
-        document.body.appendChild(css);*/
-      };
-    </script>
-  </body>
+  function setOS(osKey) {
+    const data = osData[osKey];
+    document.getElementById("banner-content").textContent = data.banner;
+    
+    const promptElem = document.getElementById("prompt-symbol");
+    promptElem.textContent = data.prompt;
+    promptElem.className = "prompt " + data.themeClass;
+
+    document.querySelectorAll(".os-tab").forEach((tab, index) => {
+      tab.classList.toggle("active", osKeys[index] === osKey);
+    });
+
+    currentOSIndex = osKeys.indexOf(osKey);
+  }
+
+  function switchOS(osKey) {
+    setOS(osKey);
+    resetAutoRotate();
+  }
+
+  function startAutoRotate() {
+    autoRotateInterval = setInterval(() => {
+      currentOSIndex = (currentOSIndex + 1) % osKeys.length;
+      setOS(osKeys[currentOSIndex]);
+    }, 6000);
+  }
+
+  function resetAutoRotate() {
+    clearInterval(autoRotateInterval);
+    startAutoRotate();
+  }
+
+  // Gestion des commandes interactives
+  const inputElem = document.getElementById("cli-input");
+  const outputElem = document.getElementById("output");
+
+  inputElem.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+      const command = this.value.trim().toLowerCase();
+      const currentPrompt = osData[osKeys[currentOSIndex]].prompt;
+      
+      let response = "";
+
+      if (command === "help") {
+        // Intégration d'un bouton HTML cliquable menant vers home.html
+        response = `Commandes disponibles:
+ - projects : voir mes projets <a href="./index/home.html" class="terminal-btn">Ouvrir mes projets</a>
+ - contact  : mes liens sociaux
+ - clear    : effacer l'écran
+ - switch   : changer d'OS`;
+      } else if (command === "projects") {
+        response = "📁 Projets principaux:\n1. E-commerce Platform (Next.js / Node)\n2. Mobile App (React Native)\n3. Custom API Engine (PHP)";
+      } else if (command === "contact") {
+        response = "📬 Contact:\n - GitHub: github.com/matvei1995\n - LinkedIn: linkedin.com/in/matvei\n - Email: contact@matvei.dev";
+      } else if (command === "clear") {
+        outputElem.innerText = "";
+        this.value = "";
+        return;
+      } else if (command === "switch") {
+        currentOSIndex = (currentOSIndex + 1) % osKeys.length;
+        setOS(osKeys[currentOSIndex]);
+        this.value = "";
+        return;
+      } else if (command !== "") {
+        response = `Commande inconnue: '${command}'. Tapez 'help' pour la liste.`;
+      }
+
+      if (command !== "") {
+        const logLine = document.createElement("div");
+        logLine.style.marginTop = "10px";
+        
+        // MODIFICATION CLÉ : utilisation de innerHTML au lieu de textContent
+        // pour que les balises HTML (<a ...></a>) soient interprétées comme des éléments cliquables
+        logLine.innerHTML = `${currentPrompt} ${command}<br>${response.replace(/\n/g, '<br>')}`;
+        outputElem.appendChild(logLine);
+      }
+
+      this.value = "";
+      resetAutoRotate();
+    }
+  });
+
+  setOS("linux");
+  startAutoRotate();
+</script>
+
+</body>
 </html>
