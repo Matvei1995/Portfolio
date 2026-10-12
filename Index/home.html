@@ -1,233 +1,567 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <title>Présentation</title>
-   
-  </head>
-  <body id="home-body">
-    <div id="kinetic-container">
-      <canvas id="kinetic-canvas"></canvas>
-  </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio de Matvei Tabelev - Développeur Fullstack Web & Mobile (React, Node.js, PHP, JavaScript)." />
+  <title>Matvei Tabelev | Développeur Web & Mobile</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
 
-  <script src="./script.js"></script>
-    <header>
-      <div id="lang">
-        <a href="homeEn.html">English</a>
-        <img id="pic1" src="../picture/language-svgrepo-com.svg" />
-      </div>
-    </header>
-    
+  <!-- Navigation / En-tête -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#about" class="brand-logo">
+        <div class="logo-badge">
+          <img src="../picture/logo-icon.png" alt="Logo" onerror="this.style.display='none'; this.parentElement.textContent='MT';" />
+        </div>
+        <div class="brand-name">
+          <span>Matvei Tabelev</span>
+          <span class="role">Développeur Web & Mobile</span>
+        </div>
+      </a>
 
-      <section id="page-container">
-       
-        <h1>Qui suis-je ?</h1>
-      
-        <div class="container-header">
-          <div class="me">Moi c'est Matvei, ravi de vous voir sur Portfolio</div>
-          
-          <div class="profile-pic_media-for-mobile">
-          <img id="pic" src="../picture/profile-pic.png" />
-        </div>
-    
-        <div class="myself">
-          <!-- <img class="about-me-image" src="../picture/page.png"> -->
-          <p class="about-me">
-            Jeune actif travaillant dans divers secteurs comme la logistique,la restauration, le service client et le commerce de proximité. </p>
-         
-            <p class="about-me"> La sphère professionnelle n'est donc pas une nouveauté. Ma soif d'apprentissage ma remis en question sur que nous souhaitons.</p>
-            <p class="about-me">Motivé et déterminer à vous apporter une approche différentes à l'aide de mon expériences.
-            Pour Vous, pérennisez votre CA et le développer.
-            <p class="about-me">Acquérir et développer de solide compétences dans l'informatique. 
-              Accomplir par la suite un épanouissement professionnelle, grâce à vous. </p>
-            Ca tombe bien je suis développeur web.</p> 
-           <p class="about-me"> Mes 3ans dans l'IT mon appris les basses des languages web et informatique.
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#about">À propos</a></li>
+          <li><a href="#skills">Compétences</a></li>
+          <li><a href="#projects">Projets</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
 
-            Ma formation Bac+3 de Concepteur Développeur D'applications ma permis de découvrir tout le concept avant le code.</p>
-  
-  
-            <p class="about-me">Les défis, j'adore ! Laissez-moi vous montrer de quoi je suis capable.
-              Continuons ensemble l'aventure.</p>
-         
-        </div>
-       
-        
-        </div>
-       
-      
-      </section>
-      <section id="skills">
-        <h2> Mes Compétentes</h2>
-        <div class="content-skills">
-          <div class="content-pics">
-          <img class="pic-html" src="../icons/HTML.png" alt="Html">
-        </div>
-        <div class="content-pics">
-          <img class="pic-css" src="../icons/css.png" alt="Css">
-        </div>
-        <div class="content-pics">
-        <img class="pic-js"  src="../icons/js.png" alt="JavaScript">
-      </div>
-      <div class="content-pics">
-        <img class="pic-css" src="../icons/Angular.png" alt="Angular Framework JavaScript">
-      </div>
-      <div class="content-pics">
-        <img class="pic-html"  src="../icons/React.png" alt="react Framework">
-      </div><div class="content-pics">
-        <img class="pic-html"  src="../icons/express.png" alt="express Framework">
-      </div>
-      <div class="content-pics">
-        <img class="pic-mysql"  src="../icons/MySQL.jpeg" alt="MySQL">
-      </div><div class="content-pics">
-        <img class="pic-mysql"  src="../icons/php.png" alt="Php Symphony">
-      </div>
+      <div class="nav-actions">
+        <!-- Lien vers le Terminal CLI -->
+        <a href="../index.html" class="btn-terminal" title="Ouvrir le terminal interactif">
+          <span class="term-icon">&gt;_</span>
+          <span>Terminal</span>
+        </a>
 
-        <div class="content-pics">
-          <img class="pic-html"  src="../icons/mongodb.svg" alt="MongoDB">
-        </div>
-        <div class="content-pics">
-          <img class="pic-vscode"  src="../icons/vscode.png" alt="VirtualStudioCode">
-        </div>
-        <div class="content-pics">
-          <img class="pic-figma"  src="../icons/figma.png" alt="figma">
-        </div>
-          <div class="content-pics">
-            <img class="pic-node4" src="../icons/node.png" alt="Node.js">
-          </div>
-         
-          
+        <!-- Sélecteur de langue -->
+        <a href="homeEn.html" class="lang-switcher" title="Switch to English">
+          <img src="../picture/language-svgrepo-com.svg" alt="Langue" />
+          <span>EN</span>
+        </a>
 
-        </div>
-
-      </section>
-      <section id="projects">
-        <div id="content-title">
-        <h3 class="myprojetct">Mes Projets</h3>
-      </div>
- 
-        <div id="content-project">
-          <div class="content-cards-k">
-            <p> 🥗 Application de gestion de stock de produits alimentaires Anti-gaspi</p>       
-              <a target="_blank" href="https://foodsaver-two.vercel.app/">
-                <img src="../picture/foodsaver.png" border-radius="15px" width="10%" alt="logo foodsaver">
-              </a>
-            </div>
-          
-          <div class="content-cards-k">
-            <p> Voici un exemple de site vitrine d'un commerce de plantes</p>
-             
-                <a target="_blank" href="https://matvei1995.github.io/MaisonJungle/">
-                  <img src="../picture/Maisonjungle.png" border-radius="15px" width="10%" alt="logo maison">
-                </a>
-              </div>
-
-
-          <div class="content-cards-k">
-            <p class="text-align">Créez une application web de location immobilière avec React.</p>
-           <a target="_blank" href="https://kasap12.netlify.app/">
-            <img
-              class="pic-project-1"
-              src="../picture/kasa.svg"
-              alt=" lien site web kasa"
-          /></a> 
-          </div>
-        
-        <div class="content-cards-k">
-          <p>Construisez une API sécurisée pour une application d'avis Sur des Sauces Piquante.
-
-            Construire toute la partie Back-end du site.A l’aide Node.js ,Express et mongoDB</p>
-         
-            <a target="_blank" href="https://github.com/Matvei1995/P6_TABELEV_MATVEI_PIIQUANTE"> <img
-              class="pic-project-1"
-              src="../picture/piiquante.png"
-              alt="lien site web piquante" ></a>
-         
-        </div>
-        <div class="content-cards-k">
-          <p>Construisez un site e-commerce en JavaScript.
-
-            Implémenter le site qui est static de manière dynamique à l’aide JavaScript Sans Framework.
-            </p>
-          <img
-            class="pic-project-k"
-            src="../picture/kanap.png"
-            alt="lien site web kanap"
-          />
-        </div>
-        <div class="content-cards-k">
-          <p>La Panthère Agence de Web design  
-
-            Optimisez le site existant avec l’aide d’outil SEO comme lighthouse afin de génerait un rapport de Performance Accesibilité , des meilleurs pratiques et de SEO.</p>
-          <a target="_blank" href="https://matvei1995.github.io/P4_TABELEV_Matvei/">
-            <img class="pic-project-1" src="../picture/lapanthère.png" alt="lien site web lapanthère"
-          /></a>
-        </div>
-
-       
-        <div class="content-cards-k">
-          <p>Deux maquettes à un site web en HTML et css.    
-  
-            Booki propose une interface pour trouver des hébergement.
-            
-            ohmyfood propose de développer un site “mobile first” qui répertorie les menus de restaurants gastronomiques</p>
-            <div class="contain-logo">
-            <a target="_blank" href="https://matvei1995.github.io/ohmyfood/">
-              <img
-                class="pic-project-1"
-                src="../picture/ohmyfood@2x.svg"
-                alt="lien site web ohmyfood"
-              />
-              </a>
-              <a target="_blank" href="https://matvei1995.github.io/Booki/">
-                <img
-                  class="pic-project-booki"
-                  src="../picture/Booki@3x.png"
-                  alt="lien site web booki"
-                />
-              </a>
-            </div>
-         
-        </div>
-        </div>
+        <!-- Bouton mobile burger -->
+        <button class="menu-toggle-btn" id="menu-toggle-btn" aria-label="Menu de navigation">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
       </div>
     </div>
-  </section>
-    <footer>
-    
-      <a href="mailto:matvei.tabelev@icloud.com">Contact</a>
-      <a target="_blank" href="https://github.com/Matvei1995/">
-        <svg
-          height="32"
-          aria-hidden="true"
-          viewBox="0 0 16 16"
-          version="1.1"
-          width="32"
-          data-view-component="true"
-          class="octicon octicon-mark-github v-align-middle color-fg-default"
-        >
-          <path
-            d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"
-          ></path>
-        </svg>
-      </a>
-      <a target="_blank" href="https://www.linkedin.com/in/matvei-tabelev-developpeurweb1/">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          data-supported-dps="24x24"
-          fill="currentColor"
-          class="mercado-match"
-          width="24"
-          height="24"
-          focusable="false"
-        >
-          <path
-            d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"
-          ></path>
-        </svg>
-      </a>
-    </footer>
-  </body>
+  </header>
+
+  <main class="main-content">
+
+    <!-- Section Présentation / Hero -->
+    <section id="about" class="section-wrapper">
+      <div class="hero-grid">
+        <div class="hero-intro">
+          <div class="status-badge">
+            <span class="status-dot"></span>
+            <span>Disponible pour opportunités</span>
+          </div>
+
+          <h1 class="hero-headline">
+            Bonjour, je suis <br />
+            <span class="text-gradient">Matvei Tabelev</span>
+          </h1>
+
+          <div class="hero-role">
+            <span>Développeur Fullstack Web &amp; Mobile</span>
+          </div>
+
+          <div class="hero-bio">
+            <p>
+              Issu d'un parcours diversifié et formateur dans la logistique, la restauration, le service client et le commerce de proximité, j'ai forgé une grande adaptabilité, un fort esprit d'équipe et le sens du résultat.
+            </p>
+            <p>
+              Passionné par l'informatique avec <strong>3 ans d'expérience dans l'IT</strong> et diplômé d'un <strong>Bac+3 de Concepteur Développeur d'Applications</strong>, j'aime concevoir des architectures robustes et transformer des idées complexes en interfaces fluides et performantes.
+            </p>
+            <p>
+              Les défis techniques me motivent au quotidien. Travaillons ensemble pour concrétiser vos projets et valoriser votre activité !
+            </p>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn-primary">
+              <span>Voir mes projets</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <polyline points="19 12 12 19 5 12"></polyline>
+              </svg>
+            </a>
+
+            <a href="#contact" class="btn-secondary">
+              <span>Me contacter</span>
+            </a>
+
+            <div class="hero-socials">
+              <a href="https://github.com/Matvei1995/" target="_blank" rel="noopener noreferrer" class="social-icon-btn" title="Profil GitHub">
+                <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
+                </svg>
+              </a>
+              <a href="https://www.linkedin.com/in/matvei-tabelev-developpeurweb1/" target="_blank" rel="noopener noreferrer" class="social-icon-btn" title="Profil LinkedIn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-metrics">
+            <div class="metric-card">
+              <span class="metric-num">3+</span>
+              <span class="metric-label">Années d'expérience IT</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-num">Bac+3</span>
+              <span class="metric-label">Concepteur Développeur</span>
+            </div>
+            <div class="metric-card">
+              <span class="metric-num">10+</span>
+              <span class="metric-label">Projets réalisés</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-avatar-card">
+          <div class="avatar-wrapper">
+            <div class="avatar-glow"></div>
+            <div class="avatar-frame">
+              <img id="pic" src="../picture/profile-pic.jpeg" alt="Photo de profil de Matvei Tabelev" />
+            </div>
+            <div class="avatar-floating-tag">
+              <span class="floating-icon">💻</span>
+              <div>
+                <div>Fullstack Dev</div>
+                <small style="color: var(--text-muted); font-size: 0.72rem;">Web &amp; Mobile</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Compétences -->
+    <section id="skills" class="section-wrapper">
+      <div class="section-header">
+        <span class="section-pill">Stack Technique</span>
+        <h2 class="section-title">Mes Compétences</h2>
+        <p class="section-subtitle">
+          Un ensemble de technologies modernes pour concevoir des applications scalables, rapides et intuitives.
+        </p>
+      </div>
+
+      <div class="skills-categories">
+        <!-- Groupe Frontend -->
+        <div class="skills-group">
+          <div class="skills-group-title">
+            <div class="group-icon">&lt;/&gt;</div>
+            <span>Frontend &amp; Frameworks</span>
+          </div>
+          <div class="skills-grid">
+            <div class="skill-card">
+              <div class="skill-icon-wrap">
+                <img src="../icons/HTML.png" alt="HTML5" />
+              </div>
+              <span class="skill-name">HTML5</span>
+              <span class="skill-tag">Structure</span>
+            </div>
+            <div class="skill-card">
+              <div class="skill-icon-wrap">
+                <img src="../icons/css.png" alt="CSS3" />
+              </div>
+              <span class="skill-name">CSS3</span>
+              <span class="skill-tag">Styling</span>
+            </div>
+            <div class="skill-card">
+              <div class="skill-icon-wrap">
+                <img src="../icons/js.png" alt="JavaScript" />
+              </div>
+              <span class="skill-name">JavaScript</span>
+              <span class="skill-tag">ES6+</span>
+            </div>
+            <div class="skill-card">
+              <div class="skill-icon-wrap">
+                <img src="../icons/React.png" alt="React" />
+              </div>
+              <span class="skill-name">React</span>
+              <span class="skill-tag">Library</span>
+            </div>
+            <div class="skill-card">
+              <div class="skill-icon-wrap">
+                <img src="../icons/Angular.png" alt="Angular" />
+              </div>
+              <span class="skill-name">Angular</span>
+              <span class="skill-tag">Framework</span>
+            </div>
+            <div class="skill-card">
+              <div class="skill-icon-wrap">
+                <img src="../icons/vueJs.png" alt="Vue.js" />
+              </div>
+              <span class="skill-name">Vue.js</span>
+              <span class="skill-tag">Framework</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Groupe Backend & Données -->
+        <div class="skills-group">
+          <div class="skills-group-title">
+            <div class="group-icon">⚙️</div>
+            <span>Backend &amp; Bases de données</span>
+          </div>
+          <div class="skills-grid">
+            <div class="skill-card">
+              <div class="skill-icon-wrap">
+                <img src="../icons/node.png" alt="Node.js" />
+              </div>
+              <span class="skill-name">Node.js</span>
+              <span class="skill-tag">Runtime</span>
+            </div>
+            <div class="skill-card">
+              <div class="skill-icon-wrap">
+                <img src="../icons/express.png" alt="Express" />
+              </div>
+              <span class="skill-name">Express</span>
+              <span class="skill-tag">API REST</span>
+            </div>
+            <div class="skill-card">
+              <div class="skill-icon-wrap">
+                <img src="../icons/php.png" alt="PHP" />
+              </div>
+              <span class="skill-name">PHP / Symfony</span>
+              <span class="skill-tag">Backend</span>
+            </div>
+            <div class="skill-card">
+              <div class="skill-icon-wrap">
+                <img src="../icons/MySQL.jpeg" alt="MySQL" />
+              </div>
+              <span class="skill-name">MySQL</span>
+              <span class="skill-tag">SQL</span>
+            </div>
+            <div class="skill-card">
+              <div class="skill-icon-wrap">
+                <img src="../icons/mongodb.svg" alt="MongoDB" />
+              </div>
+              <span class="skill-name">MongoDB</span>
+              <span class="skill-tag">NoSQL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Groupe Outils & Workflow -->
+        <div class="skills-group">
+          <div class="skills-group-title">
+            <div class="group-icon">🛠️</div>
+            <span>Outils &amp; Workflow</span>
+          </div>
+          <div class="skills-grid">
+            <div class="skill-card">
+              <div class="skill-icon-wrap">
+                <img src="../icons/vscode.png" alt="VS Code" />
+              </div>
+              <span class="skill-name">VS Code</span>
+              <span class="skill-tag">IDE</span>
+            </div>
+            <div class="skill-card">
+              <div class="skill-icon-wrap">
+                <img src="../icons/figma.png" alt="Figma" />
+              </div>
+              <span class="skill-name">Figma</span>
+              <span class="skill-tag">UI / UX</span>
+            </div>
+            <div class="skill-card">
+              <div class="skill-icon-wrap">
+                <img src="../icons/logo.svg" alt="Git & GitHub" />
+              </div>
+              <span class="skill-name">Git &amp; GitHub</span>
+              <span class="skill-tag">Versionning</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Projets -->
+    <section id="projects" class="section-wrapper">
+      <div class="section-header">
+        <span class="section-pill">Portfolio</span>
+        <h2 class="section-title">Mes Projets</h2>
+        <p class="section-subtitle">
+          Découvrez quelques-unes de mes réalisations : applications web réactives, boutiques interactives et APIs sécurisées.
+        </p>
+      </div>
+
+      <div class="projects-grid">
+        <!-- 1. Foodsaver -->
+        <article class="project-card">
+          <div class="project-media">
+            <span class="project-badge-type">Web App</span>
+            <img src="../picture/foodsaver.png" alt="Aperçu Foodsaver" />
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Foodsaver</h3>
+            <p class="project-desc">
+              Application de gestion de stock de produits alimentaires anti-gaspillage. Elle permet aux utilisateurs de suivre les dates de péremption, d'optimiser leur consommation et de réduire le gaspillage quotidien.
+            </p>
+            <div class="project-techs">
+              <span class="tech-chip">Next.js</span>
+              <span class="tech-chip">React</span>
+              <span class="tech-chip">Vercel</span>
+              <span class="tech-chip">Anti-Gaspi</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://foodsaver-two.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-card-link">
+                <span>Voir le projet</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2. Maison Jungle -->
+        <article class="project-card">
+          <div class="project-media">
+            <span class="project-badge-type">E-Commerce</span>
+            <img src="../picture/Maisonjungle.png" alt="Aperçu Maison Jungle" />
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Maison Jungle</h3>
+            <p class="project-desc">
+              Site vitrine et boutique en ligne pour un commerce de plantes botaniques. Interface interactive avec gestion de panier en temps réel, filtres de catégories et conseils d'entretien pour chaque variété.
+            </p>
+            <div class="project-techs">
+              <span class="tech-chip">React</span>
+              <span class="tech-chip">JavaScript</span>
+              <span class="tech-chip">CSS3</span>
+              <span class="tech-chip">GitHub Pages</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://matvei1995.github.io/MaisonJungle/" target="_blank" rel="noopener noreferrer" class="btn-card-link">
+                <span>Voir le projet</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. Kasa -->
+        <article class="project-card">
+          <div class="project-media">
+            <span class="project-badge-type">Location Web</span>
+            <img src="../picture/kasa.svg" alt="Aperçu Kasa" />
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Kasa</h3>
+            <p class="project-desc">
+              Plateforme web de location immobilière entre particuliers conçue avec React. Comprend la gestion dynamique des annonces de logement, des carrousels d'images interactifs, des collapse accordéons et un routage complet.
+            </p>
+            <div class="project-techs">
+              <span class="tech-chip">React</span>
+              <span class="tech-chip">React Router</span>
+              <span class="tech-chip">Sass / CSS</span>
+              <span class="tech-chip">Netlify</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://kasap12.netlify.app/" target="_blank" rel="noopener noreferrer" class="btn-card-link">
+                <span>Voir le projet</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. Piiquante -->
+        <article class="project-card">
+          <div class="project-media">
+            <span class="project-badge-type">API REST</span>
+            <img src="../picture/piiquante.png" alt="Aperçu Piiquante" />
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Piiquante</h3>
+            <p class="project-desc">
+              API sécurisée pour une application d'avis et de notation de sauces piquantes. Développement complet de l'architecture backend avec authentification sécurisée par JWT, hachage bcrypt, protection OWASP et base MongoDB.
+            </p>
+            <div class="project-techs">
+              <span class="tech-chip">Node.js</span>
+              <span class="tech-chip">Express</span>
+              <span class="tech-chip">MongoDB</span>
+              <span class="tech-chip">JWT &amp; Sécurité</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://github.com/Matvei1995/P6_TABELEV_MATVEI_PIIQUANTE" target="_blank" rel="noopener noreferrer" class="btn-card-link">
+                <span>Code GitHub</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5. Kanap -->
+        <article class="project-card">
+          <div class="project-media">
+            <span class="project-badge-type">E-Commerce JS</span>
+            <img src="../picture/kanap.png" alt="Aperçu Kanap" />
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Kanap</h3>
+            <p class="project-desc">
+              Site e-commerce dynamique développé en JavaScript pur (Vanilla JS sans framework). Intégration des appels API REST, gestion complète du panier d'achat avec LocalStorage et validation stricte des formulaires Regex avant commande.
+            </p>
+            <div class="project-techs">
+              <span class="tech-chip">JavaScript Vanilla</span>
+              <span class="tech-chip">API REST</span>
+              <span class="tech-chip">LocalStorage</span>
+              <span class="tech-chip">Regex</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 6. La Panthère -->
+        <article class="project-card">
+          <div class="project-media">
+            <span class="project-badge-type">Audit &amp; SEO</span>
+            <img src="../picture/lapanthère.png" alt="Aperçu La Panthère" />
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Agence La Panthère</h3>
+            <p class="project-desc">
+              Optimisation globale du référencement naturel (SEO), de l'accessibilité web et des performances techniques pour une agence web design. Scores Lighthouse boostés à 95%+ grâce à l'optimisation des assets et du balisage.
+            </p>
+            <div class="project-techs">
+              <span class="tech-chip">SEO</span>
+              <span class="tech-chip">Lighthouse</span>
+              <span class="tech-chip">Accessibilité</span>
+              <span class="tech-chip">Performance</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://matvei1995.github.io/P4_TABELEV_Matvei/" target="_blank" rel="noopener noreferrer" class="btn-card-link">
+                <span>Voir le projet</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 7. OhMyFood & Booki -->
+        <article class="project-card">
+          <div class="project-media" style="gap: 15px;">
+            <span class="project-badge-type">HTML / CSS</span>
+            <img src="../picture/ohmyfood@2x.svg" alt="Logo OhMyFood" style="max-height: 50px;" />
+            <img src="../picture/Booki@3x.png" alt="Logo Booki" style="max-height: 40px;" />
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">OhMyFood &amp; Booki</h3>
+            <p class="project-desc">
+              Intégration d'interfaces web responsives et modernes : Booki pour la recherche et sélection d'hébergements touristiques, et OhMyFood avec approche « mobile-first », animations CSS soignées et spinners interactifs.
+            </p>
+            <div class="project-techs">
+              <span class="tech-chip">HTML5</span>
+              <span class="tech-chip">CSS3 / Sass</span>
+              <span class="tech-chip">Mobile First</span>
+              <span class="tech-chip">Animations CSS</span>
+            </div>
+            <div class="project-actions">
+              <a href="https://matvei1995.github.io/ohmyfood/" target="_blank" rel="noopener noreferrer" class="btn-card-link">
+                <span>OhMyFood ↗</span>
+              </a>
+              <a href="https://matvei1995.github.io/Booki/" target="_blank" rel="noopener noreferrer" class="btn-card-link">
+                <span>Booki ↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="section-wrapper">
+      <div class="contact-card">
+        <h2>Travaillons ensemble !</h2>
+        <p>
+          Vous avez un projet web ou mobile à concrétiser, ou une opportunité à me proposer ? N'hésitez pas à me contacter directement par e-mail ou via LinkedIn.
+        </p>
+
+        <div class="contact-buttons">
+          <a href="mailto:matvei.tabelev@icloud.com" class="btn-primary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span>matvei.tabelev@icloud.com</span>
+          </a>
+
+          <a href="https://www.linkedin.com/in/matvei-tabelev-developpeurweb1/" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+            <span>LinkedIn</span>
+            <span>↗</span>
+          </a>
+
+          <a href="https://github.com/Matvei1995/" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+            <span>GitHub</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Pied de page -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <strong>Matvei Tabelev</strong> &copy; 2026 &bull; Développeur Concepteur d'Applications
+      </div>
+
+      <div class="footer-links">
+        <a href="#about">À propos</a>
+        <a href="#skills">Compétences</a>
+        <a href="#projects">Projets</a>
+        <a href="../index.html">Mode Terminal</a>
+      </div>
+
+      <div class="footer-socials">
+        <a href="https://github.com/Matvei1995/" target="_blank" rel="noopener noreferrer" title="GitHub">
+          <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/matvei-tabelev-developpeurweb1/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script d'interaction mobile & navigation -->
+  <script>
+    // Toggle menu mobile
+    const menuBtn = document.getElementById('menu-toggle-btn');
+    const navLinks = document.getElementById('nav-links');
+
+    if (menuBtn && navLinks) {
+      menuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+      });
+
+      // Fermer le menu lors du clic sur un lien
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('active');
+        });
+      });
+    }
+  </script>
+
+</body>
 </html>

@@ -2,38 +2,102 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Terminal Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matvei Tabelev | Terminal CLI Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    
     body {
-      background-color: #0f172a;
+      background-color: #07110c;
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(16, 185, 129, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(0, 168, 150, 0.1) 0%, transparent 45%),
+        radial-gradient(rgba(52, 211, 153, 0.04) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 32px 32px;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      font-family: 'Fira Code', 'Courier New', Courier, monospace;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
       padding: 20px;
+      color: #f1f8f4;
+    }
+
+    /* Barre d'accès rapide au portfolio graphique */
+    .top-bar-bypass {
+      width: 100%;
+      max-width: 820px;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .brand-pill {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #94bba7;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-dot-mini {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+    }
+
+    .link-graphical {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #34d399;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: all 0.25s;
+    }
+
+    .link-graphical:hover {
+      background: #10b981;
+      color: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
     }
 
     /* Fenêtre du Terminal */
     .terminal-window {
       width: 100%;
-      max-width: 750px;
-      background: #1e1e1e;
-      border-radius: 10px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      max-width: 820px;
+      background: rgba(12, 26, 19, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 16px;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 40px rgba(16, 185, 129, 0.15);
       overflow: hidden;
-      border: 1px solid #333;
+      border: 1px solid rgba(52, 211, 153, 0.18);
     }
 
     /* Barre supérieure / Onglets */
     .terminal-header {
-      background: #252526;
-      padding: 10px 15px;
+      background: rgba(10, 22, 16, 0.9);
+      padding: 12px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid #333;
+      border-bottom: 1px solid rgba(52, 211, 153, 0.12);
     }
 
     .window-buttons {
@@ -46,60 +110,77 @@
       height: 12px;
       border-radius: 50%;
       display: inline-block;
+      transition: opacity 0.2s;
     }
     .dot-red { background: #ff5f56; }
     .dot-yellow { background: #ffbd2e; }
     .dot-green { background: #27c93f; }
 
+    .terminal-title-center {
+      font-size: 0.75rem;
+      color: #5e836f;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
     .os-tabs {
       display: flex;
-      gap: 5px;
+      gap: 6px;
     }
 
     .os-tab {
-      background: #1e1e1e;
-      color: #888;
-      border: none;
+      background: rgba(255, 255, 255, 0.05);
+      color: #94bba7;
+      border: 1px solid transparent;
       padding: 4px 12px;
-      border-radius: 4px;
+      border-radius: 6px;
       cursor: pointer;
-      font-size: 12px;
+      font-size: 11px;
       font-family: inherit;
       transition: all 0.2s;
     }
 
-    .os-tab.active {
-      background: #3c3c3c;
+    .os-tab:hover {
+      background: rgba(52, 211, 153, 0.12);
       color: #fff;
-      font-weight: bold;
+    }
+
+    .os-tab.active {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      border-color: rgba(16, 185, 129, 0.4);
+      font-weight: 600;
     }
 
     /* Corps du terminal */
     .terminal-body {
-      padding: 20px;
-      color: #cccccc;
-      font-size: 14px;
-      line-height: 1.5;
-      min-height: 320px;
+      padding: 24px;
+      color: #cbd5e1;
+      font-size: 13.5px;
+      line-height: 1.6;
+      min-height: 340px;
       white-space: pre-wrap;
       overflow-y: auto;
-      max-height: 600px;
+      max-height: 580px;
     }
 
     /* Couleurs spécifiques aux OS */
     .theme-linux { color: #50fa7b; }
     .theme-windows { color: #60a5fa; }
-    .theme-mac { color: #ff79c6; }
+    .theme-mac { color: #f472b6; }
 
     /* Ligne de commande */
     .input-line {
       display: flex;
-      margin-top: 15px;
+      align-items: center;
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(52, 211, 153, 0.1);
     }
 
     .prompt {
-      margin-right: 8px;
-      font-weight: bold;
+      margin-right: 10px;
+      font-weight: 600;
       user-select: none;
       white-space: nowrap;
     }
@@ -107,85 +188,137 @@
     .cmd-input {
       background: transparent;
       border: none;
-      color: #fff;
+      color: #f1f8f4;
       font-family: inherit;
-      font-size: 14px;
+      font-size: 13.5px;
       outline: none;
       flex: 1;
     }
 
     /* Style du bouton interactif intégré dans le terminal */
     .terminal-btn {
-      display: inline-block;
-      margin-top: 5px;
-      padding: 4px 10px;
-      background: #3b82f6;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+      padding: 6px 14px;
+      background: linear-gradient(135deg, #059669, #10b981);
       color: #ffffff;
       text-decoration: none;
-      border-radius: 4px;
+      border-radius: 6px;
       font-size: 12px;
-      font-weight: bold;
-      transition: background 0.2s;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+      transition: all 0.2s;
       border: none;
       cursor: pointer;
     }
+
     .terminal-btn:hover {
-      background: #2563eb;
+      background: linear-gradient(135deg, #10b981, #34d399);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5);
     }
 
     /* Style des lignes de sortie */
     .output-line {
-      margin-top: 10px;
+      margin-top: 12px;
       word-wrap: break-word;
     }
 
     .command-line {
       color: #fff;
-      margin-bottom: 5px;
+      font-weight: 600;
+      margin-bottom: 6px;
     }
 
     .response-line {
-      color: #cccccc;
+      color: #94bba7;
       white-space: pre-wrap;
+    }
+
+    .quick-hints {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 11px;
+      color: #5e836f;
+    }
+
+    .hint-tag {
+      padding: 2px 8px;
+      background: rgba(52, 211, 153, 0.06);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .hint-tag:hover {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
     }
   </style>
 </head>
 <body>
 
-<div class="terminal-window">
-  <!-- Barre d'en-tête -->
-  <div class="terminal-header">
-    <div class="window-buttons">
-      <span class="dot dot-red"></span>
-      <span class="dot dot-yellow"></span>
-      <span class="dot dot-green"></span>
+  <!-- Barre supérieure d'accès rapide -->
+  <div class="top-bar-bypass">
+    <div class="brand-pill">
+      <span class="status-dot-mini"></span>
+      <span>Matvei Tabelev &bull; Portfolio CLI</span>
     </div>
-    <div class="os-tabs">
-      <button class="os-tab active" onclick="switchOS('linux')">Linux</button>
-      <button class="os-tab" onclick="switchOS('windows')">Windows</button>
-      <button class="os-tab" onclick="switchOS('mac')">macOS</button>
-    </div>
+
+    <a href="./Index/home.html" class="link-graphical">
+      <span>Mode Graphique</span>
+      <span>↗</span>
+    </a>
   </div>
 
-  <!-- Contenu du terminal -->
-  <div class="terminal-body">
-    <div id="banner-content"></div>
-    
-    <!-- Zone de résultat des commandes -->
-    <div id="output"></div>
+  <div class="terminal-window">
+    <!-- Barre d'en-tête -->
+    <div class="terminal-header">
+      <div class="window-buttons">
+        <span class="dot dot-red"></span>
+        <span class="dot dot-yellow"></span>
+        <span class="dot dot-green"></span>
+      </div>
 
-    <!-- Invite de commande active -->
-    <div class="input-line">
-      <span id="prompt-symbol" class="prompt"></span>
-      <input type="text" id="cli-input" class="cmd-input" placeholder="Tapez 'help' ou une commande..." autofocus>
+      <div class="terminal-title-center">matvei@portfolio: ~</div>
+
+      <div class="os-tabs">
+        <button class="os-tab active" onclick="switchOS('linux')">Linux</button>
+        <button class="os-tab" onclick="switchOS('windows')">Windows</button>
+        <button class="os-tab" onclick="switchOS('mac')">macOS</button>
+      </div>
+    </div>
+
+    <!-- Contenu du terminal -->
+    <div class="terminal-body" id="term-container">
+      <div id="banner-content"></div>
+      
+      <!-- Zone de résultat des commandes -->
+      <div id="output"></div>
+
+      <!-- Invite de commande active -->
+      <div class="input-line">
+        <span id="prompt-symbol" class="prompt"></span>
+        <input type="text" id="cli-input" class="cmd-input" placeholder="Tapez 'help' ou cliquez sur un raccourci..." autofocus autocomplete="off">
+      </div>
+
+      <div class="quick-hints">
+        <span>Raccourcis :</span>
+        <span class="hint-tag" onclick="runCommand('projects')">projects</span>
+        <span class="hint-tag" onclick="runCommand('skills')">skills</span>
+        <span class="hint-tag" onclick="runCommand('contact')">contact</span>
+        <span class="hint-tag" onclick="runCommand('gui')">gui</span>
+        <span class="hint-tag" onclick="runCommand('clear')">clear</span>
+      </div>
     </div>
   </div>
-</div>
 
 <script>
-  // ============================================
-  // FONCTION DE SÉCURITÉ : Échapper le HTML
-  // ============================================
+  // Sécurité HTML
   function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text;
@@ -200,9 +333,9 @@
       banner: `       /\\         matvei@dev-node
       /  \\        -----------------
      /\\   \\       OS: Arch Linux x86_64
-    /      \\      Stack: React, Next.js, PHP
+    /      \\      Stack: React, Next.js, Node.js, PHP
    /   ,,   \\     Uptime: 42 days 🚀
-  /   |  |   \\    
+  /   |  |   \\    Role: Concepteur Développeur (Bac+3)
  /_-''    ''-_\\   Bienvenue sur mon portfolio CLI Linux !`
     },
     windows: {
@@ -211,26 +344,25 @@
       banner: `Windows PowerShell
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-
              ,.=:!!t3Z3z=i.             matvei@WINDOWS-DEV
             :t13333333333333Y#i          ------------------
            :t333333333333333333i         OS: Windows 11 Pro x64
           .333333333333333333333         Role: Fullstack Developer
           i333333333333333333333         Location: France 🇫🇷
           \`333333333333333333333         
-           :t33333333333333333i          Ready for new projects.`
+           :t33333333333333333i          Prêt pour de nouveaux projets ✨`
     },
     mac: {
       prompt: "➜  portfolio git:(main) ✗",
       themeClass: "theme-mac",
-      banner: `Last login: Thu Jul 23 11:26:41 on ttys001
+      banner: `Last login: Sun Oct 12 14:10:00 on ttys001
 
                     c,          matvei@macbook-pro ~
                  .-'  \`-.       --------------------
-               .'        \`.     OS: macOS Tahoes 26.5.2
-              /            \\    Host: MacBook Pro
-             |              |   Role: Mobile & Web Developer
-              \\            /    Status: Available for hire ✨
+               .'        \`.     OS: macOS Sequoia 15.x
+              /            \\    Host: MacBook Pro Apple Silicon
+             |              |   Role: Web & Mobile Developer
+              \\            /    Status: Disponible pour opportunités 🚀
                \`.        .'`
     }
   };
@@ -239,21 +371,40 @@ Copyright (C) Microsoft Corporation. All rights reserved.
   let currentOSIndex = 0;
   let autoRotateInterval;
 
-  // ============================================
-  // Définition des commandes et réponses sûres
-  // ============================================
+  // Définition des commandes
   const commands = {
     help: {
-      response: "Commandes disponibles:\n - projects : voir mes projets\n - contact  : mes liens sociaux\n - clear    : effacer l'écran\n - switch   : changer d'OS",
-      hasButton: true
+      response: "Commandes disponibles :\n • projects : liste des projets réalisés\n • skills   : technologies & compétences\n • bio      : qui suis-je ?\n • contact  : mes coordonnées\n • gui      : ouvrir la version graphique du portfolio\n • switch   : changer le système d'exploitation\n • clear    : effacer le terminal",
+      buttonText: "Ouvrir le portfolio complet",
+      buttonLink: "./Index/home.html"
     },
     projects: {
-      response: "📁 Projets principaux:\n1. E-commerce Platform (Next.js / Node)\n2. Mobile App (React Native)\n3. Custom API Engine (PHP)",
-      hasButton: false
+      response: "📁 Projets réalisés :\n 1. Foodsaver      (Next.js, React, Vercel - Anti-gaspi)\n 2. Maison Jungle  (React, E-commerce de plantes)\n 3. Kasa           (React, Plateforme de location immobilière)\n 4. Piiquante      (Node.js, Express, MongoDB - API REST sécurisée)\n 5. Kanap          (JavaScript Vanilla, E-commerce)\n 6. La Panthère    (Optimisation SEO & Performance Lighthouse)\n 7. OhMyFood/Booki (Intégration responsive HTML5/CSS3)",
+      buttonText: "Explorer les projets en détail",
+      buttonLink: "./Index/home.html#projects"
+    },
+    skills: {
+      response: "⚡ Stack Technique :\n • Frontend : HTML5, CSS3, JavaScript ES6+, React, Angular, Vue.js\n • Backend  : Node.js, Express, PHP / Symfony\n • BDD      : MySQL, MongoDB\n • Outils   : Git, GitHub, VS Code, Figma, Lighthouse",
+      buttonText: "Voir la section compétences",
+      buttonLink: "./Index/home.html#skills"
+    },
+    bio: {
+      response: "👤 À propos de Matvei Tabelev :\n • Développeur Fullstack Web & Mobile\n • Bac+3 Concepteur Développeur d'Applications\n • 3+ ans d'expérience dans l'IT\n • Issu d'un parcours riche en logistique, commerce et relation client.",
+      buttonText: "Lire ma biographie",
+      buttonLink: "./Index/home.html#about"
     },
     contact: {
-      response: "📬 Contact:\n - GitHub: github.com/matvei1995\n - LinkedIn: linkedin.com/in/matvei\n - Email: contact@matvei.dev",
-      hasButton: false
+      response: "📬 Me contacter :\n • Email    : matvei.tabelev@icloud.com\n • LinkedIn : linkedin.com/in/matvei-tabelev-developpeurweb1\n • GitHub   : github.com/Matvei1995",
+      buttonText: "Envoyer un e-mail",
+      buttonLink: "mailto:matvei.tabelev@icloud.com"
+    },
+    gui: {
+      response: "Ouverture du portfolio graphique...",
+      redirect: "./Index/home.html"
+    },
+    home: {
+      response: "Ouverture de la page d'accueil...",
+      redirect: "./Index/home.html"
     },
     clear: {
       isClear: true
@@ -263,13 +414,9 @@ Copyright (C) Microsoft Corporation. All rights reserved.
     }
   };
 
-  // ============================================
-  // Gestion de l'affichage du système d'exploitation
-  // ============================================
   function setOS(osKey) {
     const data = osData[osKey];
     
-    // Utiliser textContent pour éviter les injections XSS
     const bannerElem = document.getElementById("banner-content");
     bannerElem.textContent = data.banner;
     
@@ -293,7 +440,7 @@ Copyright (C) Microsoft Corporation. All rights reserved.
     autoRotateInterval = setInterval(() => {
       currentOSIndex = (currentOSIndex + 1) % osKeys.length;
       setOS(osKeys[currentOSIndex]);
-    }, 6000);
+    }, 7000);
   }
 
   function resetAutoRotate() {
@@ -301,89 +448,80 @@ Copyright (C) Microsoft Corporation. All rights reserved.
     startAutoRotate();
   }
 
-  // ============================================
-  // Gestion des commandes interactives
-  // ============================================
   const inputElem = document.getElementById("cli-input");
   const outputElem = document.getElementById("output");
+  const containerElem = document.getElementById("term-container");
+
+  function runCommand(cmdString) {
+    inputElem.value = cmdString;
+    processInput();
+  }
+
+  function processInput() {
+    const command = inputElem.value.trim().toLowerCase();
+    const currentPrompt = osData[osKeys[currentOSIndex]].prompt;
+    
+    if (command === "") return;
+
+    const logLine = document.createElement("div");
+    logLine.className = "output-line";
+
+    const commandLine = document.createElement("div");
+    commandLine.className = "command-line";
+    commandLine.textContent = currentPrompt + " " + command;
+    logLine.appendChild(commandLine);
+
+    if (commands[command]) {
+      const cmdData = commands[command];
+
+      if (cmdData.isClear) {
+        outputElem.innerHTML = "";
+        inputElem.value = "";
+        resetAutoRotate();
+        return;
+      } else if (cmdData.isSwitch) {
+        currentOSIndex = (currentOSIndex + 1) % osKeys.length;
+        setOS(osKeys[currentOSIndex]);
+        inputElem.value = "";
+        resetAutoRotate();
+        return;
+      } else if (cmdData.redirect) {
+        window.location.href = cmdData.redirect;
+        return;
+      } else {
+        const responseLine = document.createElement("div");
+        responseLine.className = "response-line";
+        responseLine.textContent = cmdData.response;
+        logLine.appendChild(responseLine);
+
+        if (cmdData.buttonText && cmdData.buttonLink) {
+          const btnContainer = document.createElement("div");
+          btnContainer.style.marginTop = "6px";
+          
+          const btn = document.createElement("a");
+          btn.className = "terminal-btn";
+          btn.href = cmdData.buttonLink;
+          btn.innerHTML = `${cmdData.buttonText} <span>↗</span>`;
+          btnContainer.appendChild(btn);
+          logLine.appendChild(btnContainer);
+        }
+      }
+    } else {
+      const responseLine = document.createElement("div");
+      responseLine.className = "response-line";
+      responseLine.textContent = `Commande inconnue: '${escapeHtml(command)}'. Tapez 'help' pour voir les commandes disponibles.`;
+      logLine.appendChild(responseLine);
+    }
+
+    outputElem.appendChild(logLine);
+    inputElem.value = "";
+    containerElem.scrollTop = containerElem.scrollHeight;
+    resetAutoRotate();
+  }
 
   inputElem.addEventListener("keydown", function(e) {
     if (e.key === "Enter") {
-      const command = this.value.trim().toLowerCase();
-      const currentPrompt = osData[osKeys[currentOSIndex]].prompt;
-      
-      // Ne rien faire si la commande est vide
-      if (command === "") {
-        return;
-      }
-
-      // Créer la ligne de résultat
-      const logLine = document.createElement("div");
-      logLine.className = "output-line";
-
-      // Ligne de la commande (sécurisée)
-      const commandLine = document.createElement("div");
-      commandLine.className = "command-line";
-      commandLine.textContent = currentPrompt + " " + command;
-      logLine.appendChild(commandLine);
-
-      // Traiter la commande
-      if (commands[command]) {
-        const cmdData = commands[command];
-
-        if (cmdData.isClear) {
-          // Commande clear
-          outputElem.innerText = "";
-          this.value = "";
-          resetAutoRotate();
-          return;
-        } else if (cmdData.isSwitch) {
-          // Commande switch
-          currentOSIndex = (currentOSIndex + 1) % osKeys.length;
-          setOS(osKeys[currentOSIndex]);
-          this.value = "";
-          resetAutoRotate();
-          return;
-        } else {
-          // Commande normale avec réponse
-          const responseLine = document.createElement("div");
-          responseLine.className = "response-line";
-          responseLine.textContent = cmdData.response;
-          logLine.appendChild(responseLine);
-
-          // Ajouter le bouton si nécessaire
-          if (cmdData.hasButton) {
-            const btnContainer = document.createElement("div");
-            btnContainer.style.marginTop = "5px";
-            
-            const btn = document.createElement("button");
-            btn.className = "terminal-btn";
-            btn.textContent = "Ouvrir mes projets";
-            btn.onclick = function() {
-              window.location.href = "./Index/home.html";
-            };
-            btnContainer.appendChild(btn);
-            logLine.appendChild(btnContainer);
-          }
-        }
-      } else {
-        // Commande inconnue
-        const responseLine = document.createElement("div");
-        responseLine.className = "response-line";
-        responseLine.textContent = `Commande inconnue: '${escapeHtml(command)}'. Tapez 'help' pour la liste.`;
-        logLine.appendChild(responseLine);
-      }
-
-      // Ajouter la ligne au output
-      outputElem.appendChild(logLine);
-      
-      // Vider l'input
-      this.value = "";
-      
-      // Scroll vers le bas
-      outputElem.parentElement.scrollTop = outputElem.parentElement.scrollHeight;
-      
-      resetAutoRotate();
+      processInput();
     }
   });
 
